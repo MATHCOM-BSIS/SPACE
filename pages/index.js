@@ -1,5 +1,6 @@
 import Post from "../components/Post";
 import Timetable from "../components/Timetable";
+import Meal from "../components/Meal";
 
 import styles from "../styles/Home.module.css";
 
@@ -65,6 +66,7 @@ function EctList() {
     return (
         <div className={styles.ectList}>
             <Timetable/>
+            <Meal />
         </div>
     );
 }

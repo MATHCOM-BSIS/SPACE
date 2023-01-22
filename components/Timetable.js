@@ -1,8 +1,5 @@
 import styles from "../styles/Timetable.module.css";
 
-import Image from "next/image";
-import Link from "next/link";
-
 import { useState } from "react";
 
 import firebase from "firebase/compat/app";
@@ -45,7 +42,7 @@ export default function Timetable() {
 
     var mail = user.email;
 
-    //API URL 생성
+    //generate API url
     var url =
         "https://open.neis.go.kr/hub/hisTimetable?KEY=3c07c8b644464b768a20bc4370a8e842&Type=json&ATPT_OFCDC_SC_CODE=C10&SD_SCHUL_CODE=7150532&ALL_TI_YMD=" +
         "20220303" +
@@ -54,7 +51,6 @@ export default function Timetable() {
         "&CLASS_NM=" +
         mail.slice(5, 6);
 
-    //서버 점검중이므로 임시로 오류 안나개 지워둠
     /*
     //API fetch
     fetch(url)

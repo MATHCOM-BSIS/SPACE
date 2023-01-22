@@ -1,18 +1,15 @@
-.timetable {
+.meal {
     display: flex;
     flex-direction: column;
-    padding: 10px 0 12.5px 0px;
-    border-bottom: 0.5px solid rgb(141, 141, 141);
-    margin-bottom: 12.5px;
 }
 
-.timetable__title {
+.meal__title {
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0;
 }
 
-.timetable__item {
+.meal__item {
     font-size: 1rem;
     color: rgb(83, 83, 83);
     margin: 13px 0 0 0;
