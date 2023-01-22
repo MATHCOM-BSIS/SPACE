@@ -1,0 +1,17 @@
+.timetable {
+    display: flex;
+    flex-direction: column;
+    background-color: orange;
+}
+
+.timetable__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.timetable__item {
+    font-size: 1rem;
+    color: rgb(83, 83, 83);
+    margin: 13px 0 0 0;
+}

@@ -1,4 +1,5 @@
 import Post from "../components/Post";
+import Timetable from "../components/Timetable";
 
 import styles from "../styles/Home.module.css";
 
@@ -20,8 +21,11 @@ const firebaseConfig = {
     appId: "1:649970236418:web:f77dc789da6dac9c9e7b1b",
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+} else {
+    firebase.app();
+}
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
@@ -57,7 +61,11 @@ function PostList() {
 }
 
 function EctList() {
-    return <div className={styles.ectList}></div>;
+    return (
+        <div className={styles.ectList}>
+            <Timetable/>
+        </div>
+    );
 }
 
 export default function Home() {
