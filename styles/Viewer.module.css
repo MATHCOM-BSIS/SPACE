@@ -1,0 +1,49 @@
+.app {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.viewer {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    min-width: 905px;
+}
+
+.viewer__title {
+    align-self: center;
+    margin: 15px 0;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.viewer__wrapper {
+    position: relative;
+    height: 250px;
+}
+
+.viewer__wrapper__image {
+    object-fit: contain;
+}
+
+.viewer__text {
+    margin: 15px 0 0 0;
+    font-size: 1rem;
+    color: rgb(45, 45, 45);
+    font-weight: 500;
+}
+
+.viewer__date {
+    margin: 10px 0 0 0;
+    font-size: 0.8rem;
+    color: rgb(112, 112, 112);
+}
+
+@media (max-width: 1000px) {
+    .viewer {
+        min-width: 0;
+        width: 80%;
+    }
+}

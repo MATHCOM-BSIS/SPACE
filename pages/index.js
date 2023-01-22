@@ -18,14 +18,15 @@ const firebaseConfig = {
     projectId: "bsis-space",
     storageBucket: "bsis-space.appspot.com",
     messagingSenderId: "649970236418",
-    appId: "1:649970236418:web:f77dc789da6dac9c9e7b1b",
-};
+    appId: "1:649970236418:web:f77dc789da6dac9c9e7b1b"
+  };
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 } else {
     firebase.app();
 }
+
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 

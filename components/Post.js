@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Post(props) {
-    const { title, text, createdAt, wroteby, pic } = props.post;
+    const { title, text, createdAt, wroteby, originalImg } = props.post;
     const id = props.postid;
 
     const koDtf = new Intl.DateTimeFormat('ko-KR', { dateStyle: "long" });
@@ -13,7 +13,7 @@ export default function Post(props) {
         <div className={styles.post}>
             <div className={styles.post__title}>
                 <Link style={{textDecoration : 'none', color:'#000'}} href={{ pathname: '/viewer', query: { docid : id } }}>                <p className={styles.post__title__title}>{title.substring(0, 20) + (title.length > 20 ? "..." : "")}</p></Link>
-                {pic ? <Image className={styles.post__title__image} src="/img/images-outline.svg" width="18" height="18" alt="Post with a photo"/> : <></>}
+                {originalImg ? <Image className={styles.post__title__image} src="/img/images-outline.svg" width="18" height="18" alt="Post with a photo"/> : <></>}
                 <p className={styles.post__title__user}>{wroteby.slice(0, 8)}</p>
             </div>
             <p className={styles.post__text}>{text.substring(0, 70) + (text.length > 70 ? "..." : "")}</p>

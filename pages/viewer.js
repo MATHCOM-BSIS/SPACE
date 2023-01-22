@@ -21,7 +21,11 @@ const firebaseConfig = {
     appId: "1:649970236418:web:f77dc789da6dac9c9e7b1b",
 };
 
-const app = firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+} else {
+    firebase.app();
+}
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
@@ -32,16 +36,37 @@ export default function Viewer() {
     const Document = firestore.collection("messages").doc(router.query.docid);
     const [post, loading, error] = useDocument(Document);
 
-    const koDtf = new Intl.DateTimeFormat('ko-KR', { dateStyle: "long" });
+    const koDtf = new Intl.DateTimeFormat("ko-KR", { dateStyle: "long" });
 
     return (
-        <>
-            <p>{post && post.data().title}</p>
-            <p>{post && post.data().text}</p>
-            <div style={{position: 'relative', width: '80%', height: '250px'}}>
-                <Image alt="image" src={post && post.data().originalImg} layout={'fill'} objectFit={'contain'} />
+        <div className={styles.app}>
+            <div className={styles.viewer}>
+                <p className={styles.viewer__title}>{post && post.data().title}</p>
+                {post && post.data().originalImg ? (
+                    <div className={styles.viewer__wrapper}>
+                        <Image
+                            className={styles.viewer__wrapper__image}
+                            alt="image"
+                            src={post && post.data().originalImg}
+                            fill
+                        />
+                    </div>
+                ) : (
+                    <></>
+                )}
+                <p className={styles.viewer__text}>{post && post.data().text}</p>
+                <p className={styles.viewer__date}>
+                    {post &&
+                        koDtf.format(post.data().createdAt.toDate()) +
+                            " - " +
+                            (
+                                "0" + post.data().createdAt.toDate().getHours()
+                            ).slice(-2) +
+                            "시 " +
+                            post.data().createdAt.toDate().getMinutes() +
+                            "분"}
+                </p>
             </div>
-            <p>{post && koDtf.format(post.data().createdAt.toDate()) + " - " + ("0"+post.data().createdAt.toDate().getHours()).slice(-2) + "시 " + post.data().createdAt.toDate().getMinutes() + "분"}</p>
-        </>
-    )
+        </div>
+    );
 }
