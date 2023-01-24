@@ -2,6 +2,8 @@ import Post from "../components/Post";
 import Timetable from "../components/Timetable";
 import Meal from "../components/Meal";
 
+import { Button } from "flowbite-react";
+
 import styles from "../styles/Home.module.css";
 
 import firebase from "firebase/compat/app";
@@ -40,7 +42,7 @@ function SignIn() {
                 alert("학교 계정으로 로그인 해주세요");
                 auth.signOut()
                     .then(() => {
-                        console.log("logged out");
+                        console.log("로그아웃");
                     })
                     .catch((error) => {
                         console.log(error);
@@ -48,7 +50,7 @@ function SignIn() {
             }
         });
     };
-    return <button className={styles.signIn} onClick={signInWithGoogle}>Sign In with Google</button>;
+    return <Button className={styles.signIn} onClick={signInWithGoogle}>로그인 / 가입</Button>;
 }
 
 function PostList() {

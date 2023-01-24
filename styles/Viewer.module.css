@@ -21,7 +21,7 @@
 
 .viewer__wrapper {
     position: relative;
-    height: 250px;
+    height: 60vh;
 }
 
 .viewer__wrapper__image {
@@ -36,7 +36,7 @@
 }
 
 .viewer__date {
-    margin: 10px 0 0 0;
+    margin: 10px 0 20px 0;
     font-size: 0.8rem;
     color: rgb(112, 112, 112);
 }

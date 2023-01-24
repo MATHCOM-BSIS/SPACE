@@ -40,23 +40,40 @@ export default function Timetable() {
     }
     var date = yyyy + "" + mm + "" + dd;
 
+    if (today.getHours() >= 20) {
+        var tomorrow = new Date();
+        tomorrow.setDate(today.getDate() + 1);
+        dd = tomorrow.getDate();
+        mm = tomorrow.getMonth() + 1;
+        yyyy = tomorrow.getFullYear();
+        if (dd < 10) {
+            dd = "0" + dd;
+        }
+        if (mm < 10) {
+            mm = "0" + mm;
+        }
+        date = yyyy + "" + mm + "" + dd;
+    }
+
     var mail = user.email;
 
     //generate API url
     var url =
         "https://open.neis.go.kr/hub/hisTimetable?KEY=3c07c8b644464b768a20bc4370a8e842&Type=json&ATPT_OFCDC_SC_CODE=C10&SD_SCHUL_CODE=7150532&ALL_TI_YMD=" +
-        "20220303" +
+        date +
         "&GRADE=" +
         mail.slice(2, 3) +
         "&CLASS_NM=" +
         mail.slice(5, 6);
 
-    /*
     //API fetch
     fetch(url)
         .then((res) => res.json())
-        .then((dt) => setData(dt.hisTimetable[1].row));
-    */
+        .then((dt) => {
+            if(dt.hisTimetable&&dt.hisTimetable[1].row){
+                setData(dt.hisTimetable[1].row)
+            }
+        });
 
     return (
         <div className={styles.timetable}>
