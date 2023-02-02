@@ -1,11 +1,12 @@
 import styles from "../styles/Timetable.module.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
+import { uuid } from "uuidv4";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAtwXhr3zI4tR3KKlg9305K5zVrkekkMiA",
@@ -13,8 +14,8 @@ const firebaseConfig = {
     projectId: "bsis-space",
     storageBucket: "bsis-space.appspot.com",
     messagingSenderId: "649970236418",
-    appId: "1:649970236418:web:f77dc789da6dac9c9e7b1b"
-  };
+    appId: "1:649970236418:web:f77dc789da6dac9c9e7b1b",
+};
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
@@ -67,28 +68,41 @@ export default function Timetable() {
         mail.slice(5, 6);
 
     //API fetch
-    fetch(url)
-        .then((res) => res.json())
-        .then((dt) => {
-            if(dt.hisTimetable&&dt.hisTimetable[1].row){
-                setData(dt.hisTimetable[1].row)
-            }
-        });
+    useEffect(() => {
+        fetch(url)
+            .then((res) => res.json())
+            .then((dt) => {
+                if (dt.hisTimetable && dt.hisTimetable[1].row) {
+                    setData(dt.hisTimetable[1].row);
+                }
+            });
+    });
 
     return (
         <div className={styles.timetable}>
             {data ? (
                 <>
-                    <p className={styles.timetable__title}>{`${mm}월 ${dd}일 시간표`}</p>
+                    <p
+                        className={styles.timetable__title}
+                    >{`${mm}월 ${dd}일 시간표`}</p>
                     {data.map((item) => (
-                        <p className={styles.timetable__item}>{`${item.PERIO}교시 - ${item.ITRT_CNTNT}`}</p>
+                        <p
+                            key={uuid()}
+                            className={styles.timetable__item}
+                        >{`${item.PERIO}교시 - ${item.ITRT_CNTNT}`}</p>
                     ))}
                 </>
             ) : (
                 <>
-                    <p className={styles.timetable__title}>{`${mm}월 ${dd}일 시간표`}</p>
-                    <p className={styles.timetable__item}>해당 시간표 데이터가 없습니다</p>
-                    <p className={styles.timetable__item}>NEIS에 문의해주세요</p>
+                    <p
+                        className={styles.timetable__title}
+                    >{`${mm}월 ${dd}일 시간표`}</p>
+                    <p className={styles.timetable__item}>
+                        해당 시간표 데이터가 없습니다
+                    </p>
+                    <p className={styles.timetable__item}>
+                        NEIS에 문의해주세요
+                    </p>
                 </>
             )}
         </div>

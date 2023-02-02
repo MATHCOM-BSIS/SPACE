@@ -113,7 +113,9 @@ function MyApp({ Component, pageProps }) {
                                 <Link href="/Write"><Dropdown.Item>글쓰기</Dropdown.Item></Link>
                                 <Dropdown.Item>계정 정보</Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item>문의하기</Dropdown.Item>
+                                <Link href="mailto:2210220@bsis.hs.kr?subject=O-Neul 앱 관련 문의">
+                                    <Dropdown.Item>문의하기</Dropdown.Item>
+                                </Link>
                                 <Dropdown.Item onClick={signOut}>로그아웃</Dropdown.Item>
                             </Dropdown>
                         </>
@@ -129,7 +131,7 @@ function MyApp({ Component, pageProps }) {
                     <Link href="/Write"><Navbar.Link href="/Write">글쓰기</Navbar.Link></Link>
                     <Navbar.Link href="#">시간표</Navbar.Link>
                     <Navbar.Link href="#">급식표</Navbar.Link>
-                    <Navbar.Link href="#">문의하기</Navbar.Link>
+                    <Navbar.Link href="mailto:2210220@bsis.hs.kr?subject=O-Neul 앱 관련 문의">문의하기</Navbar.Link>
                 </Navbar.Collapse>
             </Navbar>
             <Component {...pageProps} />
