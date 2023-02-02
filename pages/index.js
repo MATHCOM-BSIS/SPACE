@@ -59,7 +59,7 @@ function PostList() {
     const [posts, loading, error] = useCollection(query, { idField: "id" });
     return (
         <div className={styles.pstList}>
-            {posts && posts.docs.map((pst) => <Post key={pst.id} post={pst.data()} postid={pst.id} />)}
+            {!loading && !error && posts && posts.docs.map((pst) => <Post key={pst.id} post={pst.data()} postid={pst.id} />)}
         </div>
     );
 }

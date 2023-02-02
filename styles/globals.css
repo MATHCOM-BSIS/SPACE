@@ -12,6 +12,10 @@ html, body {
     font-family: "Pretendard";
 }
 
+#nprogress .bar {
+    background: rgba(26, 87, 219, 0.8) !important;
+}
+
 .profile img {
     height: 1.75rem;
     width: auto;

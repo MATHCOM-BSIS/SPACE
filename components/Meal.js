@@ -50,7 +50,7 @@ export default function Meal() {
 
     //generate API url
     const API_KEY = "8dd95958b0d741cea4fa73b1866337f0";
-    const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${API_KEY}&Type=json&ATPT_OFCDC_SC_CODE=C10&SD_SCHUL_CODE=7150532&MLSV_YMD=${date}}`;
+    const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${API_KEY}&Type=json&ATPT_OFCDC_SC_CODE=C10&SD_SCHUL_CODE=7150532&MLSV_YMD=${date}`;
 
     fetch(url)
         .then((res) => res.json())

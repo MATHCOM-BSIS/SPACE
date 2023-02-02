@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 import { Navbar, Dropdown, Avatar, Button } from "flowbite-react";
 
@@ -6,6 +7,12 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
+
+import Router from 'next/router';
+import NProgress from 'nprogress'; //nprogress module
+import 'nprogress/nprogress.css'; //styles of nprogress
+//Binding events. 
+Router.events.on('routeChangeStart', () => NProgress.start()); Router.events.on('routeChangeComplete', () => NProgress.done()); Router.events.on('routeChangeError', () => NProgress.done());
 
 const firebaseConfig = {
     apiKey: "AIzaSyAtwXhr3zI4tR3KKlg9305K5zVrkekkMiA",
@@ -66,16 +73,18 @@ function MyApp({ Component, pageProps }) {
                 rounded={false}
                 className="sticky top-0 z-50 border border-b border-gray-200"
             >
-                <Navbar.Brand href="/">
-                    <img
-                        src="./solar-eclipse.png"
-                        className="mr-2 h-6 sm:h-9"
-                        alt="SPACE Logo"
-                    />
-                    <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                        O-NEUL
-                    </span>
-                </Navbar.Brand>
+                <Link href="/">
+                    <Navbar.Brand>
+                        <img
+                            src="./solar-eclipse.png"
+                            className="mr-2 h-6 sm:h-9"
+                            alt="SPACE Logo"
+                        />
+                        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+                            O-NEUL
+                        </span>
+                    </Navbar.Brand>
+                </Link>
                 <div className="flex md:order-2 h-7 sm:h-9">
                     {user ? (
                         <>
@@ -101,7 +110,7 @@ function MyApp({ Component, pageProps }) {
                                         {user.email}
                                     </span>
                                 </Dropdown.Header>
-                                <Dropdown.Item>글쓰기</Dropdown.Item>
+                                <Link href="/Write"><Dropdown.Item>글쓰기</Dropdown.Item></Link>
                                 <Dropdown.Item>계정 정보</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item>문의하기</Dropdown.Item>
@@ -116,10 +125,11 @@ function MyApp({ Component, pageProps }) {
                     <Navbar.Toggle className="toggle" />
                 </div>
                 <Navbar.Collapse>
-                    <Navbar.Link href="/">홈</Navbar.Link>
-                    <Navbar.Link href="/navbars">시간표</Navbar.Link>
-                    <Navbar.Link href="/navbars">급식표</Navbar.Link>
-                    <Navbar.Link href="/navbars">문의하기</Navbar.Link>
+                    <Link href="/"><Navbar.Link>홈</Navbar.Link></Link>
+                    <Link href="/Write"><Navbar.Link href="/Write">글쓰기</Navbar.Link></Link>
+                    <Navbar.Link href="#">시간표</Navbar.Link>
+                    <Navbar.Link href="#">급식표</Navbar.Link>
+                    <Navbar.Link href="#">문의하기</Navbar.Link>
                 </Navbar.Collapse>
             </Navbar>
             <Component {...pageProps} />
