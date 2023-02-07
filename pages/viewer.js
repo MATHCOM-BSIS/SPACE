@@ -42,11 +42,13 @@ export default function Viewer() {
         <div className={styles.app}>
             <div className={styles.viewer}>
                 <p className={styles.viewer__title}>{post && post.data().title}</p>
-                {post && post.data().originalImg ? (
+                {post && !error && post.data().originalImg ? (
                     <div className={styles.viewer__wrapper}>
                         <Image
                             className={styles.viewer__wrapper__image}
                             alt="image"
+                            placeholder="blur"
+                            blurDataURL={post && `/_next/image?url=${post.data().compreesedImg}&w=16&q=1`}
                             src={post && post.data().originalImg}
                             fill
                         />

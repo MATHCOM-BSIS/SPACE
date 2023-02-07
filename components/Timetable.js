@@ -6,7 +6,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAtwXhr3zI4tR3KKlg9305K5zVrkekkMiA",
@@ -87,7 +87,7 @@ export default function Timetable() {
                     >{`${mm}월 ${dd}일 시간표`}</p>
                     {data.map((item) => (
                         <p
-                            key={uuid()}
+                            key={uuidv4()}
                             className={styles.timetable__item}
                         >{`${item.PERIO}교시 - ${item.ITRT_CNTNT}`}</p>
                     ))}

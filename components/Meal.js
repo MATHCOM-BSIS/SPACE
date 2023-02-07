@@ -2,7 +2,7 @@ import styles from "../styles/Meal.module.css";
 
 import { useState, useEffect } from "react";
 
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Meal() {
     const [data, setData] = useState();
@@ -89,7 +89,7 @@ export default function Meal() {
                 <>
                     <p className={styles.meal__title}>{meal_now_txt}</p>
                     {data.map((item) => (
-                        <p key={uuid()} className={styles.meal__item}>
+                        <p key={uuidv4()} className={styles.meal__item}>
                             {item}
                         </p>
                     ))}
